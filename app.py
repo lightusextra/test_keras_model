@@ -34,6 +34,7 @@ def home():
 @app.route('/index', methods=['GET', 'POST'])
 def upload_file():
     global graph
+    global model
     with graph.as_default():
         
 
