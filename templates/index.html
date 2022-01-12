@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CAT OR DOG?</title>
+  {% assets "scss_all" %}
+  <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
+  {% endassets %}
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+<header>
+  <a href="/">
+    <h3 class="header-logo">犬猫の写真で遊ぼう</h3>
+  </a>
+</header>
+<div class="content-wrapper">
+  <div class="message mb-3">
+    <p class="">お家やお外で撮影した犬や猫の写真をアップロードしてみましょう。</p>
+    <p>犬なのか？猫なのか？判別した情報が返ってきます。</p>
+  </div>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="explanation py-4">
+      <input class="mb-2" type="file" name="file">
+      <div class="answer">{{answer}}</div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="select-btn btn btn-lg btn-primary">
+        アップロード
+      </button>
+    </div>
+  </form>
+</div>
+<footer>
+  <small>&copy; 2021 INU-NEKO, inc.</small>
+</footer>
+</body>
+</html>
