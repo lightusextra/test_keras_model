@@ -27,6 +27,8 @@ def allowed_file(filename):
 
 graph = tf.compat.v1.get_default_graph()
 
+model = load_model('./test.h5')  # 学習済みモデルをロードする
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -73,5 +75,5 @@ def upload_file():
 
 
 if __name__ == "__main__":
-    model = load_model('./test.h5')  # 学習済みモデルをロードする
+    
     app.run(debug=True)
