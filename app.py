@@ -35,7 +35,7 @@ def home():
 def upload_file():
     global graph
     with graph.as_default():
-        model = load_model('./test.h5')  # 学習済みモデルをロードする
+        
 
         if request.method == 'POST':
             if 'file' not in request.files:
@@ -72,4 +72,5 @@ def upload_file():
 
 
 if __name__ == "__main__":
+    model = load_model('./test.h5')  # 学習済みモデルをロードする
     app.run(debug=True)
