@@ -27,7 +27,7 @@ def allowed_file(filename):
 
 graph = tf.compat.v1.get_default_graph()
 
-model = load_model('./test.h5')  # 学習済みモデルをロードする
+
 
 @app.route("/")
 def home():
@@ -36,9 +36,8 @@ def home():
 @app.route('/index', methods=['GET', 'POST'])
 def upload_file():
     global graph
-    global model
     with graph.as_default():
-        
+        model = load_model('./test.h5', complie=False)  # 学習済みモデルをロードする
 
         if request.method == 'POST':
             if 'file' not in request.files:
