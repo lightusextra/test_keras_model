@@ -9,8 +9,7 @@ import numpy as np
 
 classes = ["dog", "cat"]
 num_classes = len(classes)
-IMG_WIDTH, IMG_HEIGHT = 224, 224
-TARGET_SIZE = (IMG_WIDTH, IMG_HEIGHT)
+image_size = 150
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -27,8 +26,6 @@ def allowed_file(filename):
 
 graph = tf.compat.v1.get_default_graph()
 
-
-
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -37,7 +34,7 @@ def home():
 def upload_file():
     global graph
     with graph.as_default():
-        model = load_model('./cats_dogs_model.h5', compile=False)  # 学習済みモデルをロードする
+        model = load_model('./cats_dogs_model.h5')  # 学習済みモデルをロードする
 
         if request.method == 'POST':
             if 'file' not in request.files:
@@ -53,7 +50,7 @@ def upload_file():
                 filepath = os.path.join(UPLOAD_FOLDER, filename)
 
                 # 受け取った画像を読み込み、np形式に変換
-                img = image.load_img(filepath, target_size=TARGET_SIZE)
+                img = image.load_img(filepath, target_size=(image_size, image_size))
                 x = image.img_to_array(img)
                 x = np.expand_dims(x, axis=0)
                 # images = np.vstack([[x]])
@@ -74,5 +71,4 @@ def upload_file():
 
 
 if __name__ == "__main__":
-    
     app.run(debug=True)
